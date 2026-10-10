@@ -102,7 +102,8 @@
       <div>
         <label for="mac">MAC ADDRESS</label>
         <input id="mac" autocomplete="off" autocapitalize="characters" spellcheck="false"
-          placeholder="00:1A:79:AA:BB:CC" maxlength="32">
+          placeholder="00:1A:79:AA:BB:CC" maxlength="17"
+          oninput="formatMacInput(this)">
       </div>
       <div>
         <label for="key">DEVICE KEY</label>
@@ -176,6 +177,15 @@
 </div>
 
 <script>
+function formatMacInput(el) {
+  const clean = String(el.value || "")
+    .toUpperCase()
+    .replace(/[^0-9A-F]/g, "")
+    .slice(0, 12);
+
+  el.value = (clean.match(/.{1,2}/g) || []).join(":");
+}
+
 (() => {
   "use strict";
   const API_URL = "https://albplayr.openibc.fit/app/api/client_playlist_api.php";
@@ -431,16 +441,6 @@
     modal.addEventListener("click", (event) => {
       if (event.target === modal) closeModal(modal.id);
     });
-  });
-
-  $("mac").addEventListener("input", (e) => {
-    const raw = e.target.value
-      .replace(/[^0-9a-fA-F]/g, "")
-      .slice(0, 12)
-      .toUpperCase();
-
-    const parts = raw.match(/.{1,2}/g) || [];
-    e.target.value = parts.join(":");
   });
 
   $("mac").addEventListener("keydown", (e) => { if (e.key === "Enter") $("key").focus(); });
