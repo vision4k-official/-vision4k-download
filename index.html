@@ -1,241 +1,159 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#080c15">
-  <meta name="color-scheme" content="dark">
-  <meta name="description" content="Vision 4K is a streamlined Android media player for Live TV, Movies and Series from your own authorized playlists. Download the official Vision 4K v3.3 APK.">
-  <meta property="og:type" content="website">
-  <meta property="og:site_name" content="Vision 4K">
-  <meta property="og:title" content="Vision 4K — Your media, beautifully organized">
-  <meta property="og:description" content="A refined media player for Android and Android TV. Download the official Vision 4K APK.">
-  <meta property="og:url" content="https://vision4k-official.github.io/-vision4k-download/">
-  <meta property="og:image" content="https://vision4k-official.github.io/-vision4k-download/vision4k-logo.png">
-  <meta name="twitter:card" content="summary">
-  <link rel="icon" type="image/png" href="vision4k-logo.png">
-  <link rel="apple-touch-icon" href="vision4k-logo.png">
-  <title>Vision 4K — Official Android Download</title>
-  <style>
-    :root {
-      color-scheme: dark;
-      --bg:#080b13; --bg2:#0c111d; --panel:#111727; --panel2:#151d2e;
-      --line:rgba(190,205,238,.11); --text:#f4f6fc; --sub:#adb9ce; --muted:#8190a8;
-      --red:#f4374d; --red-hi:#ff6775; --blue:#71a8ff;
-      --container:1160px;
-    }
-    *{box-sizing:border-box}
-    html{scroll-behavior:smooth;scroll-padding-top:92px}
-    body{margin:0;background:var(--bg);font-family:Inter,ui-sans-serif,-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;color:var(--text);-webkit-font-smoothing:antialiased}
-    ::selection{background:rgba(255,67,86,.45);color:white}
-    a{color:inherit;text-decoration:none}
-    button{font:inherit}
-    .container{width:min(var(--container),calc(100% - 48px));margin-inline:auto}
-    .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
-    .svg-icon{width:20px;height:20px;stroke:currentColor;fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;flex:none}
-    .ambient{position:absolute;inset:0;overflow:hidden;pointer-events:none;z-index:-1}
-    .ambient:before,.ambient:after{content:"";position:absolute;border-radius:50%;filter:blur(7px)}
-    .ambient:before{width:880px;height:790px;right:-230px;top:-330px;background:radial-gradient(circle,rgba(42,101,199,.16),transparent 62%)}
-    .ambient:after{width:700px;height:700px;left:-300px;top:350px;background:radial-gradient(circle,rgba(233,45,67,.11),transparent 62%)}
-    .topbar{position:sticky;top:0;z-index:50;background:rgba(8,11,19,.86);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);border-bottom:1px solid var(--line)}
-    .navbar{height:76px;display:flex;align-items:center;justify-content:space-between;gap:24px}
-    .brand{display:inline-flex;align-items:center;gap:10px;flex:none}
-    .brand img{width:49px;height:49px;object-fit:contain}
-    .brand-copy{display:flex;flex-direction:column;gap:2px}
-    .brand-copy strong{font-size:18px;line-height:1;letter-spacing:-.6px}
-    .brand-copy small{font-size:9px;letter-spacing:2px;font-weight:800;color:var(--muted)}
-    .navlinks{display:flex;align-items:center;gap:33px}
-    .navlinks a{font-size:13px;color:var(--sub);font-weight:600;transition:color .2s}
-    .navlinks a:hover,.navlinks a:focus-visible{color:white}
-    .nav-download{display:inline-flex;align-items:center;gap:9px;padding:11px 16px;border:1px solid rgba(255,91,108,.24);background:rgba(244,55,77,.11);border-radius:10px;color:#ffb3bd;font-size:12px;font-weight:800;transition:background .2s}
-    .nav-download:hover{background:rgba(244,55,77,.2)}
-    .nav-download .svg-icon{width:15px;height:15px}
-    .hero{position:relative;isolation:isolate;overflow:hidden;padding:93px 0 94px}
-    .hero-grid{display:grid;grid-template-columns:1.04fr .96fr;align-items:center;gap:46px}
-    .eyebrow{display:inline-flex;align-items:center;gap:10px;padding:9px 14px;border:1px solid rgba(255,255,255,.12);background:rgba(255,255,255,.035);border-radius:99px;color:#d1d9e9;font-weight:800;font-size:10px;letter-spacing:1.45px}
-    .eyebrow .live-dot{width:7px;height:7px;border-radius:50%;background:#f44257;box-shadow:0 0 0 4px rgba(244,66,87,.13)}
-    .hero h1{font-size:clamp(49px,5.4vw,76px);letter-spacing:-3.9px;line-height:1.065;margin:25px 0 24px;font-weight:830}
-    .hero h1 .accent{color:#ff6575;background:linear-gradient(115deg,#ff8290,#ec334d);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
-    .hero-copy{color:var(--sub);font-size:17px;line-height:1.82;max-width:555px;margin:0}
-    .hero-copy strong{color:#e7eefa;font-weight:700}
-    .actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:32px;align-items:center}
-    .btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:56px;padding:15px 22px;border-radius:12px;font-size:14px;font-weight:800;transition:transform .2s,background .2s,box-shadow .2s;text-align:center}
-    .btn-primary{background:linear-gradient(112deg,#ff3e54,#d5223b);color:white;box-shadow:0 16px 38px rgba(220,29,58,.24)}
-    .btn-primary:hover{transform:translateY(-2px);box-shadow:0 21px 42px rgba(220,29,58,.32)}
-    .btn-secondary{background:rgba(255,255,255,.045);border:1px solid rgba(255,255,255,.14);color:#e5eaf5}
-    .btn-secondary:hover{background:rgba(255,255,255,.095)}
-    .meta{display:flex;align-items:center;gap:13px;flex-wrap:wrap;margin-top:25px;color:#a6b3c7;font-size:12px;font-weight:600}
-    .meta .sep{width:3px;height:3px;border-radius:50%;background:#67748b}
-    .meta .secure{display:inline-flex;align-items:center;gap:6px;color:#a5d4be}
-    .meta .secure .svg-icon{width:14px;height:14px}
-    .art-wrap{position:relative;min-height:530px;display:grid;place-items:center}
-    .art-orbit{position:absolute;border:1px solid rgba(173,197,236,.065);border-radius:50%;width:570px;height:570px;transform:translate(11px,4px);box-shadow:0 0 0 72px rgba(255,255,255,.008)}
-    .art-glow{position:absolute;width:465px;height:440px;background:radial-gradient(circle at 52% 43%,rgba(84,132,223,.2),transparent 62%),radial-gradient(circle at 70% 68%,rgba(255,64,89,.14),transparent 58%);filter:blur(23px)}
-    .player-window{position:relative;z-index:2;width:min(100%,495px);padding:10px;background:linear-gradient(155deg,#27324a,#171c2b 44%,#131824);border:1px solid rgba(201,216,247,.16);border-radius:24px;box-shadow:0 40px 85px rgba(0,0,0,.55),0 0 35px rgba(59,110,209,.06);transform:rotate(-3deg)}
-    .window-inner{background:linear-gradient(153deg,#141f32,#0b1020 62%);border:1px solid rgba(221,230,255,.1);border-radius:17px;min-height:397px;padding:19px;overflow:hidden}
-    .window-top{display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid rgba(255,255,255,.075);padding-bottom:16px}
-    .window-top span{font-size:11px;letter-spacing:1.4px;font-weight:850}.window-top em{font-style:normal;font-size:9px;letter-spacing:.5px;background:#1d3149;color:#a5c9ff;border:1px solid #31577c;padding:6px 9px;border-radius:7px}
-    .app-stage{text-align:center;padding:18px 0 13px}
-    .app-emblem{position:relative;display:grid;place-items:center;width:186px;height:186px;margin:0 auto 10px}
-    .app-emblem:before{content:"";position:absolute;inset:8px;border-radius:50%;background:radial-gradient(circle,#fff1,transparent 65%);filter:blur(16px)}
-    .app-emblem img{position:relative;width:180px;height:180px;object-fit:contain;filter:drop-shadow(0 16px 30px rgba(0,0,0,.25))}
-    .app-stage h3{font-size:16px;margin:1px 0 4px;letter-spacing:.15px}.app-stage p{font-size:11px;color:#99a9c3;margin:0}
-    .app-menus{display:grid;grid-template-columns:repeat(3,1fr);gap:9px;margin-top:20px}
-    .app-menus .menu{padding:15px 8px 12px;text-align:center;border-radius:10px;background:#151f31;border:1px solid #253249}
-    .app-menus .menu:first-child{border-color:#793645;background:linear-gradient(140deg,rgba(244,55,77,.12),#151e30)}
-    .app-menus .svg-icon{width:21px;height:21px;margin:0 auto 8px;color:#a7c5ff}
-    .app-menus .menu:first-child .svg-icon{color:#ff7787}
-    .app-menus strong{display:block;font-size:10px;color:#dce4f3;letter-spacing:.5px}
-    .badge-floating{position:absolute;z-index:4;display:flex;align-items:center;gap:8px;padding:11px 14px;background:#101929;border:1px solid #2c3d56;border-radius:12px;box-shadow:0 16px 38px #0007;font-size:11px;font-weight:750;color:#dce7fb}
-    .badge-floating .svg-icon{width:17px;height:17px;color:#89bbff}
-    .badge-one{top:35px;right:-5px;transform:rotate(3deg)}.badge-two{bottom:31px;left:-9px;transform:rotate(2deg)}
-    .quick-facts{display:grid;grid-template-columns:repeat(4,1fr);border:1px solid var(--line);border-radius:17px;background:linear-gradient(120deg,#121a2a,#101522);overflow:hidden}
-    .fact{padding:21px 25px;display:flex;align-items:center;gap:12px}
-    .fact+.fact{border-left:1px solid var(--line)}
-    .fact-icon{width:41px;height:41px;border:1px solid rgba(111,159,243,.17);border-radius:11px;background:rgba(94,142,217,.085);display:grid;place-items:center;color:#88b7ff;flex:none}
-    .fact-icon .svg-icon{width:21px;height:21px}
-    .fact strong,.fact span{display:block}.fact strong{font-size:13px;line-height:1.3;margin-bottom:2px}.fact span{font-size:11px;color:var(--muted)}
-    .section{padding:125px 0 0}.section-eyebrow{display:inline-flex;align-items:center;gap:11px;font-size:11px;font-weight:850;letter-spacing:1.7px;text-transform:uppercase;color:#ff7281}.section-eyebrow:before{content:"";width:18px;height:2px;background:var(--red)}
-    .section h2{margin:17px 0 16px;font-size:clamp(34px,4vw,52px);letter-spacing:-2px;line-height:1.15}
-    .lead{color:var(--sub);max-width:670px;font-size:15px;line-height:1.9;margin:0}
-    .features{display:grid;grid-template-columns:repeat(3,1fr);gap:15px;margin-top:42px}
-    .feature{padding:30px;border:1px solid var(--line);border-radius:18px;background:linear-gradient(150deg,#151e2e,#101622 70%);min-height:234px;transition:transform .2s,border-color .2s}
-    .feature:hover{transform:translateY(-3px);border-color:rgba(159,185,232,.28)}
-    .feature .feature-icon{width:52px;height:52px;display:grid;place-items:center;background:#20293c;border:1px solid #33435c;border-radius:13px;color:#9fc3ff;margin-bottom:26px}
-    .feature:nth-child(2) .feature-icon{color:#ff8491}.feature:nth-child(3) .feature-icon{color:#a4b5ff}
-    .feature h3{font-size:18px;margin:0 0 9px;letter-spacing:-.3px}.feature p{font-size:13px;color:var(--sub);line-height:1.8;margin:0}
-    .how-grid{display:grid;grid-template-columns:.82fr 1.18fr;align-items:start;gap:75px}
-    .how-grid .lead{margin-top:17px}.how-grid .guide-link{margin-top:24px;display:inline-flex;gap:8px;align-items:center;color:#ff8692;font-size:13px;font-weight:750}
-    .steps{display:grid;gap:0;border:1px solid var(--line);border-radius:17px;overflow:hidden;background:#111828}
-    .step{display:flex;align-items:flex-start;gap:21px;padding:26px 27px}
-    .step+.step{border-top:1px solid var(--line)}.step-id{width:39px;height:39px;display:grid;place-items:center;border-radius:11px;background:#212c42;color:#ff7c89;font-size:12px;font-weight:850;flex:none}
-    .step h3{margin:0 0 8px;font-size:15px}.step p{margin:0;color:var(--sub);font-size:13px;line-height:1.7}
-    .faq{padding-bottom:0}.faqs{display:grid;grid-template-columns:1fr 1fr;gap:13px;margin-top:37px}
-    details{border:1px solid var(--line);border-radius:13px;background:#111826;padding:0 22px}details[open]{border-color:rgba(150,183,239,.28)}
-    summary{padding:20px 0;list-style:none;cursor:pointer;font-size:13px;font-weight:750;display:flex;align-items:center;justify-content:space-between;gap:10px}
-    summary::-webkit-details-marker{display:none}summary:after{content:"+";font-size:21px;font-weight:400;color:#ff8592}details[open] summary:after{content:"−"}details p{font-size:12px;line-height:1.8;margin:0 0 22px;color:var(--sub)}
-    .last-cta{position:relative;margin:110px auto 70px;padding:45px 50px;background:radial-gradient(ellipse at 96% 12%,rgba(217,38,62,.18),transparent 59%),linear-gradient(110deg,#161f30,#131722);border:1px solid rgba(254,88,111,.22);border-radius:22px;display:flex;align-items:center;justify-content:space-between;gap:25px;overflow:hidden}
-    .last-cta:after{content:"";position:absolute;right:-110px;bottom:-185px;width:340px;height:340px;border-radius:50%;border:1px solid rgba(255,255,255,.045);pointer-events:none}
-    .last-cta h2{font-size:clamp(28px,3.2vw,38px);line-height:1.25;letter-spacing:-1.4px;margin:13px 0 9px}.last-cta p{font-size:13px;color:var(--sub);line-height:1.75;margin:0}
-    .last-cta .btn{white-space:nowrap;z-index:1}
-    footer{border-top:1px solid var(--line);background:#090d15}
-    .footer-content{display:flex;justify-content:space-between;align-items:center;gap:25px;padding:29px 0}
-    .footer-brand{display:flex;align-items:center;gap:10px;font-size:13px;font-weight:750}.footer-brand img{width:34px;height:34px}
-    .footer-links{display:flex;align-items:center;gap:19px;font-size:12px;font-weight:600;color:var(--muted)}.footer-links a:hover{color:#fff}
-    .footer-bottom{border-top:1px solid rgba(255,255,255,.055);padding:18px 0 26px;font-size:11px;color:#77869c;line-height:1.65}
-    a:focus-visible,summary:focus-visible{outline:2px solid #8dbbff;outline-offset:4px;border-radius:5px}
-    @media(max-width:1100px){.hero-grid{gap:22px}.art-wrap{min-height:475px}.player-window{width:min(100%,440px)}.art-orbit{width:465px;height:465px}.badge-one{right:5px}.badge-two{left:0}.fact{padding:18px 15px}.how-grid{gap:35px}}
-    @media(max-width:840px){.hero{padding:65px 0 78px}.hero-grid{grid-template-columns:1fr;gap:23px}.hero-copy{max-width:630px}.art-wrap{min-height:465px}.player-window{width:min(100%,480px)}.navlinks{gap:18px}.features{grid-template-columns:repeat(2,1fr)}.quick-facts{grid-template-columns:repeat(2,1fr)}.fact:nth-child(3){border-left:0;border-top:1px solid var(--line)}.fact:nth-child(4){border-top:1px solid var(--line)}.how-grid{grid-template-columns:1fr;gap:30px}.section{padding-top:100px}.last-cta{margin-top:85px}}
-    @media(max-width:600px){.container{width:calc(100% - 34px)}.navbar{height:70px}.navlinks{display:none}.brand img{width:42px;height:42px}.brand-copy strong{font-size:16px}.nav-download{font-size:11px;padding:10px 12px}.hero{padding:51px 0 65px}.hero h1{font-size:clamp(45px,11.5vw,63px);letter-spacing:-2.7px}.hero-copy{font-size:15px;line-height:1.8}.actions{margin-top:28px}.actions .btn{width:100%}.meta{gap:10px;font-size:11px}.art-wrap{min-height:395px;margin-inline:-2px}.art-orbit{width:360px;height:360px}.player-window{width:min(100%,360px);border-radius:20px}.window-inner{min-height:330px;padding:13px}.app-stage{padding:10px 0 8px}.app-emblem{height:143px;width:143px}.app-emblem img{height:140px;width:140px}.app-menus{margin-top:12px;gap:6px}.app-menus .menu{padding:10px 4px}.app-menus .svg-icon{width:18px;height:18px}.app-menus strong{font-size:9px}.badge-one{top:8px;right:-2px}.badge-two{bottom:7px;left:-4px}.quick-facts{grid-template-columns:repeat(2,1fr)}.fact{gap:7px;padding:15px 12px}.fact-icon{width:36px;height:36px}.fact strong{font-size:12px}.fact span{font-size:10px}.section{padding-top:89px}.section h2{font-size:36px;letter-spacing:-1.4px}.features{grid-template-columns:1fr;gap:12px;margin-top:30px}.feature{min-height:0;padding:24px}.feature .feature-icon{margin-bottom:19px}.steps{margin-top:8px}.step{gap:13px;padding:20px 18px}.faqs{grid-template-columns:1fr}.last-cta{margin:80px auto 45px;padding:29px 24px;flex-direction:column;align-items:flex-start}.last-cta .btn{width:100%}.footer-content{flex-direction:column;align-items:flex-start}.footer-links{flex-wrap:wrap}.brand-copy small{letter-spacing:1.4px}}
-    @media(max-width:365px){.navbar{gap:6px}.brand{gap:5px}.brand img{width:36px;height:36px}.brand-copy strong{font-size:14px}.brand-copy small{display:none}.nav-download{padding:9px 9px;font-size:10px;gap:5px}.nav-download .svg-icon{width:13px;height:13px}}
-    @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*:before,*:after{transition:none!important;animation:none!important}}
-  </style>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Vision 4K – Download</title>
+<meta name="description" content="Download Vision 4K v3.3 and Vision 4K Pro v3.4 for Android.">
+<link rel="icon" href="logo.svg" type="image/svg+xml">
+<style>
+  :root { --bg:#0b1220; --bg2:#0f192e; --card:#131c2e; --line:#243049; --fg:#e8ecf3; --muted:#93a0b5; --accent:#4f8cff; --accent2:#7c5cff; --ok:#3ecf8e; }
+  @media (prefers-color-scheme: light) {
+    :root { --bg:#f4f6fb; --bg2:#e9eefb; --card:#ffffff; --line:#e1e6f0; --fg:#18202f; --muted:#5d6a80; --accent:#2f6df0; --accent2:#6a4bf0; --ok:#1f9d63; }
+  }
+  * { box-sizing:border-box; }
+  html { scroll-behavior:smooth; }
+  body { margin:0; background:var(--bg); color:var(--fg); font:16px/1.6 -apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif; }
+  nav { display:flex; align-items:center; justify-content:space-between; max-width:1000px; margin:0 auto; padding:16px 20px; }
+  nav .brand { display:flex; align-items:center; gap:10px; font-weight:800; color:var(--fg); text-decoration:none; }
+  nav .brand img { width:34px; height:34px; border-radius:9px; }
+  nav .links a { color:var(--muted); text-decoration:none; font-size:14px; margin-left:16px; }
+  .hero { background:radial-gradient(900px 400px at 70% 0%, var(--bg2), transparent); }
+  .hero-in { max-width:1000px; margin:0 auto; padding:24px 20px 48px; display:grid; grid-template-columns:1.1fr .9fr; gap:32px; align-items:center; }
+  .eyebrow { color:var(--accent); font-weight:700; font-size:13px; letter-spacing:1px; text-transform:uppercase; }
+  h1 { font-size:42px; line-height:1.1; margin:10px 0 14px; letter-spacing:-1px; }
+  .lead { color:var(--muted); font-size:18px; margin:0 0 24px; max-width:480px; }
+  .cta { display:flex; flex-wrap:wrap; gap:12px; }
+  .btn { display:inline-block; text-align:center; text-decoration:none; font-weight:700; color:#fff; padding:13px 20px; border-radius:12px; background:linear-gradient(135deg,var(--accent),var(--accent2)); }
+  .btn.ghost { background:transparent; color:var(--fg); border:1px solid var(--line); }
+  .shot-wrap { display:flex; justify-content:center; }
+  .shot { display:block; width:100%; height:auto; border-radius:18px; border:1px solid var(--line); box-shadow:0 24px 60px rgba(47,109,240,.25); }
+  .hero-shot { max-width:460px; }
+  .card .shot { margin-bottom:18px; border-radius:14px; box-shadow:none; }
+  section.wrap { max-width:1000px; margin:0 auto; padding:24px 20px; }
+  h2.title { font-size:26px; margin:0 0 6px; letter-spacing:-.4px; }
+  .sub { color:var(--muted); margin:0 0 22px; }
+  .grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(300px,1fr)); gap:18px; }
+  .card { background:var(--card); border:1px solid var(--line); border-radius:20px; padding:26px; display:flex; flex-direction:column; }
+  .card .head { display:flex; align-items:center; gap:16px; margin-bottom:16px; }
+  .card .head img { width:72px; height:72px; border-radius:18px; box-shadow:0 8px 24px rgba(79,140,255,.25); }
+  .card h3 { margin:0; font-size:22px; }
+  .ver { color:var(--muted); font-size:14px; }
+  .badge { display:inline-block; font-size:11px; font-weight:800; letter-spacing:.6px; text-transform:uppercase; color:var(--accent); border:1px solid var(--accent); border-radius:999px; padding:1px 9px; margin-left:8px; vertical-align:middle; }
+  .badge.pro { color:#f5a623; border-color:#f5a623; }
+  .card ul { margin:0 0 22px; padding-left:20px; color:var(--muted); flex:1; }
+  .card li { margin:5px 0; }
+  .card .btn { display:block; }
+  .feat { display:grid; grid-template-columns:repeat(auto-fit,minmax(210px,1fr)); gap:14px; }
+  .f { background:var(--card); border:1px solid var(--line); border-radius:16px; padding:18px; }
+  .f .ic { font-size:22px; }
+  .f h4 { margin:6px 0 4px; font-size:16px; }
+  .f p { margin:0; color:var(--muted); font-size:14px; }
+  .steps { background:var(--card); border:1px solid var(--line); border-radius:20px; padding:24px 26px; }
+  .steps ol { margin:8px 0 0; padding-left:20px; color:var(--muted); }
+  .trust { display:flex; gap:14px; align-items:center; margin-top:18px; padding:16px 20px; text-decoration:none; color:var(--fg); background:var(--card); border:1px solid var(--line); border-left:4px solid var(--ok); border-radius:14px; }
+  .trust span { color:var(--muted); font-size:14px; }
+  .note { color:var(--muted); font-size:13px; text-align:center; max-width:720px; margin:20px auto 0; }
+  footer { text-align:center; color:var(--muted); font-size:14px; padding:12px 20px 40px; }
+  footer a { color:var(--accent); text-decoration:none; margin:0 8px; }
+  @media (max-width:760px) {
+    .hero-in { grid-template-columns:1fr; text-align:center; }
+    h1 { font-size:34px; } .lead { margin-left:auto; margin-right:auto; } .cta { justify-content:center; }
+    nav .links a:not(:last-child) { display:none; }
+  }
+</style>
 </head>
 <body>
-  <header class="topbar">
-    <nav class="container navbar" aria-label="Main navigation">
-      <a href="#home" class="brand" aria-label="Vision 4K home">
-        <img src="vision4k-logo.png" alt="" width="49" height="49">
-        <span class="brand-copy"><strong>VISION 4K</strong><small>ANDROID MEDIA PLAYER</small></span>
-      </a>
-      <div class="navlinks"><a href="#features">Features</a><a href="#how-it-works">How it works</a><a href="#faq">FAQ</a><a href="https://vision4k-official.github.io/-vision4k-download/trust-center.html">Trust Center</a></div>
-      <a class="nav-download" href="https://albplayr.openibc.fit/download.php?src=github"><svg class="svg-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v12m0 0 4-4m-4 4-4-4M5 17v3h14v-3"/></svg> DOWNLOAD APK</a>
-    </nav>
-  </header>
-  <main id="home">
-    <section class="hero">
-      <div class="ambient" aria-hidden="true"></div>
-      <div class="container hero-grid">
-        <div>
-          <span class="eyebrow"><span class="live-dot"></span> VISION 4K / OFFICIAL DOWNLOAD</span>
-          <h1>Your media.<br>One powerful<br><span class="accent">experience.</span></h1>
-          <p class="hero-copy">Your favorite content deserves a better way to watch. <strong>Vision 4K</strong> brings Live TV, Movies and Series from your own media sources into one clean, intuitive Android player.</p>
-          <div class="actions">
-            <a class="btn btn-primary" href="https://albplayr.openibc.fit/download.php?src=github" aria-label="Download Vision 4K version 3.3 APK">
-              <svg class="svg-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v12m0 0 4-4m-4 4-4-4M5 17v3h14v-3"/></svg> Download Vision 4K
-            </a>
-            <a class="btn btn-secondary" href="#how-it-works"><svg class="svg-icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="m10 8 6 4-6 4V8z"/></svg> How to install</a>
-          </div>
-          <div class="meta"><span>Version 3.3</span><span class="sep"></span><span>13.4 MB APK</span><span class="sep"></span><span>Android &amp; Android TV</span></div>
-        </div>
-        <div class="art-wrap" aria-label="Illustrative Vision 4K interface preview">
-          <div class="art-orbit" aria-hidden="true"></div><div class="art-glow" aria-hidden="true"></div>
-          <div class="badge-floating badge-one"><svg class="svg-icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="3"/><path d="m10 8 6 4-6 4V8z"/></svg> Designed for your screen</div>
-          <div class="player-window">
-            <div class="window-inner">
-              <div class="window-top"><span>VISION 4K</span><em>ANDROID PLAYER</em></div>
-              <div class="app-stage">
-                <div class="app-emblem"><img src="vision4k-logo.png" alt="Vision 4K official app logo" width="180" height="180"></div>
-                <h3>Entertainment, simplified.</h3>
-                <p>One organized home for your media.</p>
-              </div>
-              <div class="app-menus">
-                <div class="menu"><svg class="svg-icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m10 9 5 3-5 3zM8 22h8"/></svg><strong>LIVE TV</strong></div>
-                <div class="menu"><svg class="svg-icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M4 8h16m-10 2 5 3-5 3z"/></svg><strong>MOVIES</strong></div>
-                <div class="menu"><svg class="svg-icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M8 3v18m5-14h4m-4 5h4m-4 5h4"/></svg><strong>SERIES</strong></div>
-              </div>
-            </div>
-          </div>
-          <div class="badge-floating badge-two"><svg class="svg-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="m12 3 8 4v5c0 5-3.4 8-8 9-4.6-1-8-4-8-9V7z"/><path d="m9 12 2 2 4-4"/></svg> Your content. Your choice.</div>
-        </div>
-      </div>
-    </section>
 
-    <div class="container">
-      <div class="quick-facts" aria-label="Application details">
-        <div class="fact"><div class="fact-icon"><svg class="svg-icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="7" y="2" width="10" height="20" rx="2"/><path d="M11 18h2"/></svg></div><div><strong>Android</strong><span>Phone &amp; tablet</span></div></div>
-        <div class="fact"><div class="fact-icon"><svg class="svg-icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="13" rx="2"/><path d="M9 22h6m-3-4v4"/></svg></div><div><strong>Android TV</strong><span>Big-screen ready</span></div></div>
-        <div class="fact"><div class="fact-icon"><svg class="svg-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2v12m-4-4 4 4 4-4"/><path d="M4 17v4h16v-4"/></svg></div><div><strong>APK v3.3</strong><span>Direct download</span></div></div>
-        <div class="fact"><div class="fact-icon"><svg class="svg-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="m12 3 8 4v5c0 5-3.4 8-8 9-4.6-1-8-4-8-9V7z"/><path d="m9 12 2 2 4-4"/></svg></div><div><strong>Your sources</strong><span>No bundled channels</span></div></div>
-      </div>
+<nav>
+  <a class="brand" href="index.html"><img src="logo.svg" alt="">Vision 4K</a>
+  <div class="links"><a href="#download">Download</a><a href="trust.html">Trust Center</a><a href="privacy.html">Privacy</a></div>
+</nav>
 
-      <section class="section" id="features" aria-labelledby="features-heading">
-        <span class="section-eyebrow">Built for effortless watching</span>
-        <h2 id="features-heading">Everything you watch.<br>Beautifully organized.</h2>
-        <p class="lead">A focused media experience that keeps navigation simple and your content easy to find. Connect your own authorized sources and enjoy an organized library.</p>
-        <div class="features">
-          <article class="feature"><div class="feature-icon"><svg class="svg-icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m10 9 5 3-5 3z"/></svg></div><h3>Live TV</h3><p>Explore live channels and categories from your connected playlist sources.</p></article>
-          <article class="feature"><div class="feature-icon"><svg class="svg-icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 9h18m-11 2 5 3-5 3z"/></svg></div><h3>Movies</h3><p>Discover the films available through the media sources you choose to connect.</p></article>
-          <article class="feature"><div class="feature-icon"><svg class="svg-icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M8 4v16m5-12h4m-4 4h4m-4 4h4"/></svg></div><h3>Series</h3><p>Keep episodic content organized with dedicated sections and easy browsing.</p></article>
-          <article class="feature"><div class="feature-icon"><svg class="svg-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 12a4 4 0 0 1 4-4h4a4 4 0 0 1 0 8h-4m-2-4a4 4 0 0 1-4 4H5a4 4 0 0 1 0-8h2"/></svg></div><h3>Playlist support</h3><p>Connect compatible M3U or Xtream Codes sources that you are authorized to use.</p></article>
-          <article class="feature"><div class="feature-icon"><svg class="svg-icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="2" y="3" width="20" height="18" rx="3"/><path d="M7 8h10M7 12h10M7 16h6"/></svg></div><h3>Intuitive layout</h3><p>A clean interface designed to help you move from categories to content with ease.</p></article>
-          <article class="feature"><div class="feature-icon"><svg class="svg-icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="7" y="2" width="10" height="20" rx="2"/><path d="M10 6h4m-4 12h4"/></svg></div><h3>Across your screens</h3><p>Enjoy Vision 4K on supported Android devices, including Android TV boxes.</p></article>
-        </div>
-      </section>
-
-      <section class="section" id="how-it-works" aria-labelledby="how-heading">
-        <div class="how-grid">
-          <div><span class="section-eyebrow">Getting started</span><h2 id="how-heading">Three steps.<br>You're ready.</h2><p class="lead">Download the official Android installation file, install it on your device, and connect your own compatible media source.</p><a class="guide-link" href="https://appteka.store/app/618r328700" target="_blank" rel="noopener noreferrer">Also available on Appteka <span aria-hidden="true">↗</span></a></div>
-          <div class="steps">
-            <div class="step"><span class="step-id">01</span><div><h3>Download the APK</h3><p>Choose “Download Vision 4K” to get the official version 3.3 APK for Android.</p></div></div>
-            <div class="step"><span class="step-id">02</span><div><h3>Install on your device</h3><p>Open the APK on your Android device. Allow installation from that source only after checking that you trust the file.</p></div></div>
-            <div class="step"><span class="step-id">03</span><div><h3>Connect your media</h3><p>Open Vision 4K and follow the app's setup instructions to add media sources you are authorized to access.</p></div></div>
-          </div>
-        </div>
-      </section>
-
-      <section class="section faq" id="faq" aria-labelledby="faq-heading">
-        <span class="section-eyebrow">A few useful answers</span><h2 id="faq-heading">Good to know.</h2>
-        <div class="faqs">
-          <details><summary>Does Vision 4K include TV channels?</summary><p>No. Vision 4K is a media player, not a content provider. You must supply your own playlists or media sources and have the rights to access the content.</p></details>
-          <details><summary>What devices are supported?</summary><p>Vision 4K is distributed as an Android APK. It is intended for compatible Android phones, tablets and Android TV devices. Compatibility can vary by device and Android version.</p></details>
-          <details><summary>Can I download it from Appteka?</summary><p>Yes. The Vision 4K listing is also available on <a href="https://appteka.store/app/618r328700" target="_blank" rel="noopener noreferrer" style="color:#ff8d99;text-decoration:underline">Appteka</a>. Downloads from external stores are subject to their availability and policies.</p></details>
-          <details><summary>Where can I get updates and support?</summary><p>For official announcements, releases and support information, visit the Vision 4K <a href="https://t.me/vision4k_official" target="_blank" rel="noopener noreferrer" style="color:#ff8d99;text-decoration:underline">Telegram community</a>.</p></details>
-        </div>
-      </section>
-
-      <section class="last-cta" aria-label="Download Vision 4K">
-        <div><span class="section-eyebrow">VISION 4K · V3.3</span><h2>Your next viewing experience starts here.</h2><p>Get the official Android APK and bring your media into focus.</p></div>
-        <a class="btn btn-primary" href="https://albplayr.openibc.fit/download.php?src=github"><svg class="svg-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v12m0 0 4-4m-4 4-4-4M5 17v3h14v-3"/></svg> Download APK</a>
-      </section>
+<div class="hero"><div class="hero-in">
+  <div>
+    <div class="eyebrow">Media player for Android</div>
+    <h1>Your playlists.<br>One clean player.</h1>
+    <p class="lead">Vision 4K is a fast, simple media player with easy activation using MAC and Device Key. Add your own M3U or Xtream playlist and start watching.</p>
+    <div class="cta">
+      <a class="btn" href="#download">Download</a>
+      <a class="btn ghost" href="trust.html">Trust Center</a>
     </div>
-  </main>
-  <footer>
-    <div class="container footer-content">
-      <a href="#home" class="footer-brand"><img src="vision4k-logo.png" alt="" width="34" height="34"> VISION 4K</a>
-      <div class="footer-links"><a href="#features">Features</a><a href="#how-it-works">Install guide</a><a href="https://vision4k-official.github.io/-vision4k-download/trust-center.html">Trust Center</a><a href="https://appteka.store/app/618r328700" target="_blank" rel="noopener noreferrer">Appteka ↗</a><a href="https://t.me/vision4k_official" target="_blank" rel="noopener noreferrer">Telegram ↗</a></div>
+  </div>
+  <div class="shot-wrap">
+    <img class="shot hero-shot" src="img/screenshot-pro.jpg" alt="Vision 4K Pro playlist screen">
+  </div>
+</div></div>
+
+<section class="wrap" id="download">
+  <h2 class="title">Choose your version</h2>
+  <p class="sub">Both versions are free to download for Android.</p>
+  <div class="grid">
+
+    <div class="card">
+      <img class="shot" src="img/screenshot-standard.jpg" alt="Vision 4K device activation screen" loading="lazy">
+      <div class="head">
+        <img src="logo.svg" alt="Vision 4K logo">
+        <div><h3>Vision 4K<span class="badge">Standard</span></h3><div class="ver">Version 3.3 &middot; Android</div></div>
+      </div>
+      <ul>
+        <li>Live TV, Movies and Series</li>
+        <li>M3U and Xtream Codes playlists</li>
+        <li>Favorites and history</li>
+        <li>Parental control with PIN</li>
+      </ul>
+      <a class="btn" href="Vision4K-v3.3.apk" download>Download v3.3</a>
     </div>
-    <div class="container footer-bottom">© 2026 Vision 4K. All rights reserved. Vision 4K is a media player and does not provide channels, playlists or copyrighted content. Use only sources you are authorized to access.</div>
-  </footer>
+
+    <div class="card">
+      <img class="shot" src="img/screenshot-pro.jpg" alt="Vision 4K Pro playlist screen" loading="lazy">
+      <div class="head">
+        <img src="logo-pro.svg" alt="Vision 4K Pro logo">
+        <div><h3>Vision 4K Pro<span class="badge pro">Pro</span></h3><div class="ver">Version 3.4 &middot; Android</div></div>
+      </div>
+      <ul>
+        <li>Everything in Standard</li>
+        <li>Improved look and player</li>
+        <li>Professional playback info bar</li>
+        <li>Updates and messages from the administrator</li>
+      </ul>
+      <a class="btn" href="Vision4K-Pro-v3.4.apk" download>Download Pro v3.4</a>
+    </div>
+
+  </div>
+</section>
+
+<section class="wrap">
+  <h2 class="title">Why Vision 4K</h2>
+  <p class="sub">Built to stay simple.</p>
+  <div class="feat">
+    <div class="f"><div class="ic">&#9889;</div><h4>Simple activation</h4><p>Activate with the MAC and Device Key shown in the app.</p></div>
+    <div class="f"><div class="ic">&#128273;</div><h4>Your playlists</h4><p>Add M3U links or Xtream Codes logins. They stay on your device.</p></div>
+    <div class="f"><div class="ic">&#128274;</div><h4>No ads, no tracking</h4><p>No advertising and no analytics tools inside the app.</p></div>
+    <div class="f"><div class="ic">&#128106;</div><h4>Parental control</h4><p>Protect settings and content with your own PIN.</p></div>
+  </div>
+</section>
+
+<section class="wrap">
+  <div class="steps">
+    <h2 class="title" style="font-size:20px">How to install</h2>
+    <ol>
+      <li>Download the APK with the button above.</li>
+      <li>Open the file and allow <em>Install from this source</em> when asked.</li>
+      <li>Open the app and note your MAC and Device Key for activation.</li>
+      <li>Add your playlist from Settings or from the add-playlist page.</li>
+    </ol>
+  </div>
+  <a class="trust" href="trust.html"><strong style="color:var(--ok)">&#10003; Trust Center</strong><span>Official source, app permissions and how your data is handled &rarr;</span></a>
+  <p class="note">Vision 4K is a media player only. It does not provide, host or sell any channels or content; you add your own playlist from a provider you are legally allowed to use.</p>
+</section>
+
+<footer>
+  <a href="trust.html">Trust Center</a>
+  <a href="privacy.html">Privacy Policy</a>
+  <a href="https://wa.me/447727188441">Contact on WhatsApp</a>
+  <div style="margin-top:10px">&copy; 2026 Vision 4K</div>
+</footer>
+
 </body>
 </html>
