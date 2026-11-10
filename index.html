@@ -416,5 +416,76 @@ s1.setAttribute('crossorigin','*');
 s0.parentNode.insertBefore(s1,s0);
 })();
 </script>
+
+<!-- Update notice popup (shows on every new visit, closable) -->
+<style>
+#v4kNotice{position:fixed;inset:0;z-index:9999;display:none;align-items:center;justify-content:center;padding:18px;background:rgba(3,5,10,.78);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px)}
+#v4kNotice.on{display:flex}
+#v4kNotice .box{position:relative;width:100%;max-width:520px;max-height:92vh;overflow:auto;background:linear-gradient(165deg,#18203d,#121830);border:1px solid rgba(255,255,255,.14);border-radius:24px;padding:30px 26px 24px;box-shadow:0 30px 80px -20px rgba(0,0,0,.8);color:#f4f6fb}
+#v4kNotice .x{position:absolute;top:12px;right:14px;width:36px;height:36px;border-radius:50%;border:1px solid rgba(255,255,255,.14);background:rgba(255,255,255,.06);color:#f4f6fb;font-size:22px;line-height:1;cursor:pointer}
+[dir="rtl"] #v4kNotice .x{right:auto;left:14px}
+#v4kNotice .tag{display:inline-block;font-size:12px;font-weight:800;letter-spacing:1px;text-transform:uppercase;color:#ffb3ac;background:rgba(229,56,59,.18);border-radius:30px;padding:4px 12px}
+#v4kNotice h2{margin:14px 0 10px;font-size:24px;line-height:1.2;font-weight:900}
+#v4kNotice p{margin:0 0 12px;color:#c7d0e6;font-size:15.5px}
+#v4kNotice .ok{background:rgba(62,207,142,.12);border:1px solid rgba(62,207,142,.35);border-radius:14px;padding:11px 14px;color:#cfeedd;font-size:14.5px;margin:14px 0}
+#v4kNotice ol{margin:0 0 18px;padding-inline-start:22px;color:#c7d0e6;font-size:15px}
+#v4kNotice li{margin:4px 0}
+#v4kNotice .row{display:flex;gap:10px;flex-wrap:wrap}
+#v4kNotice .row a,#v4kNotice .row button{flex:1 1 150px;display:inline-flex;align-items:center;justify-content:center;padding:13px 18px;border-radius:14px;font:700 15.5px inherit;font-family:inherit;text-decoration:none;cursor:pointer;border:1px solid rgba(255,255,255,.14)}
+#v4kNotice .go{color:#fff;background:linear-gradient(180deg,#ff5a4d,#e5383b);border-color:transparent!important;box-shadow:0 10px 30px -8px rgba(229,56,59,.7)}
+#v4kNotice .cl{color:#f4f6fb;background:#18203d}
+</style>
+<div id="v4kNotice" role="dialog" aria-modal="true" aria-labelledby="v4kNtTitle">
+  <div class="box">
+    <button class="x" id="v4kNtX" type="button" aria-label="Close">&times;</button>
+    <span class="tag" id="v4kNtTag"></span>
+    <h2 id="v4kNtTitle"></h2>
+    <p id="v4kNtP1"></p>
+    <div class="ok" id="v4kNtOk"></div>
+    <ol><li id="v4kNtS1"></li><li id="v4kNtS2"></li><li id="v4kNtS3"></li></ol>
+    <div class="row">
+      <a class="go" id="v4kNtGo" href="https://albplayr.openibc.fit/downloads/get.php" download></a>
+      <button class="cl" id="v4kNtCl" type="button"></button>
+    </div>
+  </div>
+</div>
+<script>
+(function () {
+  var L = {
+    en: {tag:"Important", t:"Update to Vision 4K 3.8", p:"Older versions of Vision 4K (3.6 and earlier) are now closed and no longer load playlists. To keep watching, please install version 3.8.", ok:"✅ Nothing is lost: your device, MAC address and remaining subscription days stay the same.", s1:"Tap “Download v3.8” below.", s2:"Install it over the old app.", s3:"Open Vision 4K. It connects automatically.", go:"Download v3.8", cl:"Close"}
+  };
+  var box = document.getElementById('v4kNotice');
+  if (!box) return;
+  function lang() { return 'en'; }
+  function fill(l) {
+    var d = L[l];
+    document.getElementById('v4kNtTag').textContent = d.tag;
+    document.getElementById('v4kNtTitle').textContent = d.t;
+    document.getElementById('v4kNtP1').textContent = d.p;
+    document.getElementById('v4kNtOk').textContent = d.ok;
+    document.getElementById('v4kNtS1').textContent = d.s1;
+    document.getElementById('v4kNtS2').textContent = d.s2;
+    document.getElementById('v4kNtS3').textContent = d.s3;
+    document.getElementById('v4kNtGo').textContent = d.go;
+    document.getElementById('v4kNtCl').textContent = d.cl;
+    box.setAttribute('dir', l === 'ar' ? 'rtl' : 'ltr');
+  }
+  function close() {
+    box.classList.remove('on');
+    try { sessionStorage.setItem('v4k_notice_seen', '1'); } catch (e) {}
+  }
+  var seen = false;
+  try { seen = sessionStorage.getItem('v4k_notice_seen') === '1'; } catch (e) {}
+  fill(lang());
+  var sel = document.getElementById('lang');
+  document.getElementById('v4kNtX').addEventListener('click', close);
+  document.getElementById('v4kNtCl').addEventListener('click', close);
+  document.getElementById('v4kNtGo').addEventListener('click', function () { setTimeout(close, 300); });
+  box.addEventListener('click', function (e) { if (e.target === box) close(); });
+  document.addEventListener('keydown', function (e) { if (e.key === 'Escape') close(); });
+  if (!seen) box.classList.add('on');
+})();
+</script>
+
 </body>
 </html>
