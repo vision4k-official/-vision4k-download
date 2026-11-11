@@ -325,6 +325,44 @@ nav{backdrop-filter:none!important;-webkit-backdrop-filter:none!important;backgr
 .devices .d-ph .s-nav{flex:none}
 .devices .d-top span{font-size:1.5cqw;letter-spacing:.22cqw}
 .devices .d-top{gap:1.2cqw;padding:0 2cqw}
+
+/* ===== varianti 3: pajisjet në rresht me emra ===== */
+.stage.devices.row3{aspect-ratio:1.55/1;display:flex;align-items:flex-end;justify-content:space-between;gap:2cqw;padding:0 1cqw 8cqw}
+.row3 .d-slot{position:relative;display:flex;flex-direction:column;align-items:center;gap:2.2cqw}
+.row3 .d-slot>div{position:relative!important;left:auto!important;right:auto!important;top:auto!important;bottom:auto!important}
+.row3 .d-slot:nth-child(1){width:13%}.row3 .d-slot:nth-child(2){width:26%}.row3 .d-slot:nth-child(3){width:19%}.row3 .d-slot:nth-child(4){width:38%}
+.row3 .d-slot>div{width:100%!important}
+.row3 .d-ph{--f1:1.3cqw;--ls:2cqw}
+.row3 .d-tab{--f1:1.6cqw;--f2:1.3cqw;--ls:2.3cqw;--hl:5cqw;--hb:2.2cqw;--hs:1.1cqw;--pf:1.2cqw}
+.row3 .d-tab .s-top span:not(.on){display:none}
+.row3 .d-tv{--f1:1.7cqw;--f2:1.35cqw;--ls:2.4cqw;--hl:6.4cqw;--hb:2.8cqw;--hs:1.4cqw;--pf:1.35cqw;--p:1.2cqw;--g:.8cqw}
+.row3 .d-tv .s-top span:nth-of-type(n+4){display:none}
+.row3 .d-top span{font-size:1.1cqw;letter-spacing:.15cqw}
+.row3 .d-top .devlogo{width:4.6cqw}
+.row3 .d-lab{font-size:max(11px,1.9cqw);font-weight:800;color:#0b6478;background:#e6f6f4;border:1px solid rgba(20,150,170,.3);padding:.6cqw 1.8cqw;border-radius:3cqw;white-space:nowrap}
+.row3 .shelf{position:absolute;left:0;right:0;bottom:6.3cqw;height:.5cqw;border-radius:1cqw;background:linear-gradient(90deg,transparent,rgba(26,159,207,.35),transparent)}
+.row3 .d-slot .d-lab{position:absolute;bottom:-6.6cqw}
+
+/* v3 rregullime */
+.stage.devices.row3{aspect-ratio:2.05/1;gap:2.4cqw;padding:0 .5cqw 8.5cqw;max-width:680px}
+.row3 .d-slot:nth-child(1){width:11.5%}.row3 .d-slot:nth-child(2){width:24%}.row3 .d-slot:nth-child(3){width:17%}.row3 .d-slot:nth-child(4){width:38%}
+.row3 .d-tv .s-grid.c6 u:nth-child(n+5){display:none}
+.row3 .d-tv .s-grid.c6{grid-template-columns:repeat(4,1fr)}
+.row3 .d-tv{--f1:1.6cqw;--f2:1.3cqw;--ls:2.3cqw;--hl:6cqw;--hb:2.7cqw;--hs:1.3cqw;--pf:1.4cqw;--hg:1.2cqw;--hp:1.6cqw}
+.row3 .d-tab{--hl:4.6cqw;--hb:2cqw;--pf:1.2cqw;--hg:1cqw;--hp:1.2cqw}
+.row3 .d-tab .s-hero small{display:none}
+.row3 .d-top span{display:none}
+.row3 .d-top{justify-content:space-between;padding:0 1.6cqw}
+.row3 .d-top .devlogo{width:5cqw}
+.row3 .d-front{height:2.6cqw;padding:0 1.6cqw;gap:.8cqw}
+.row3 .d-front i{width:2.2cqw;height:.9cqw}
+.row3 .d-front b{font-size:1.3cqw}
+.row3 .d-ph .s-top b{font-size:1.25cqw}
+
+.row3 .d-tab .s-grid.c3{grid-template-rows:1fr}
+.row3 .d-tab .s-grid.c3 u:nth-child(n+4){display:none}
+.row3 .d-tab .s-hero b{font-size:1.9cqw;white-space:nowrap}
+.row3 .d-tab .s-grid u{font-size:1.15cqw;padding:.4cqw .5cqw}
 </style>
 </head>
 <body>
@@ -345,12 +383,9 @@ nav{backdrop-filter:none!important;-webkit-backdrop-filter:none!important;backgr
       <a class="btn ghost" href="https://vision4k-official.github.io/add/#home" data-i18n="btn_add">Add Playlist</a>
     </div>
   </div>
-  <div class="stage devices" aria-hidden="true">
-    <div class="d-tv"><div class="d-bez"><div class="d-scr"><div class="s-top"><img class="devlogo" alt="Vision 4K" decoding="async"><b>Vision 4K</b><span class="on">Home</span><span class="">Live TV</span><span class="">Movies</span><span class="">Series</span><span class="">Settings</span></div><div class="s-hero"><img class="devlogo" alt="Vision 4K" decoding="async"><div><b>Vision 4K</b><small>Live TV · Movies · Series</small></div></div><div class="s-grid c6"><u>Live TV</u><u>Movies</u><u>Series</u><u>Sport</u><u>Kids</u><u>Music</u></div></div></div><i class="d-stand"></i></div>
-    <div class="d-tab"><div class="d-bez"><div class="d-scr"><div class="s-top"><img class="devlogo" alt="Vision 4K" decoding="async"><b>Vision 4K</b><span class="on">Home</span><span class="">Live TV</span></div><div class="s-hero"><img class="devlogo" alt="Vision 4K" decoding="async"><div><b>Vision 4K</b><small>Live TV · Movies · Series</small></div></div><div class="s-grid c3"><u>Live TV</u><u>Movies</u><u>Series</u><u>Sport</u><u>Kids</u><u>Music</u></div></div></div></div>
-    <div class="d-box"><div class="d-top"><img class="devlogo" alt="Vision 4K" decoding="async"><span>ANDROID BOX</span><em></em></div><div class="d-front"><i></i><i></i><i></i><b>4K</b></div></div>
-    <div class="d-ph"><div class="d-bez"><div class="d-scr"><div class="s-top"><img class="devlogo" alt="Vision 4K" decoding="async"><b>Vision 4K</b></div><div class="s-hero phh"><img class="devlogo" alt="Vision 4K" decoding="async"></div><div class="s-grid c2"><u></u><u></u><u></u><u></u></div><div class="s-nav"><i class="on"></i><i></i><i></i><i></i></div></div></div></div>
-    <div class="glow"></div>
+  <div class="stage devices row3" aria-hidden="true">
+    <div class="d-slot"><div class="d-ph"><div class="d-bez"><div class="d-scr"><div class="s-top"><img class="devlogo" alt="Vision 4K" decoding="async"><b>Vision 4K</b></div><div class="s-hero phh"><img class="devlogo" alt="Vision 4K" decoding="async"></div><div class="s-grid c2"><u></u><u></u><u></u><u></u></div><div class="s-nav"><i class="on"></i><i></i><i></i><i></i></div></div></div></div><span class="d-lab">Phone</span></div><div class="d-slot"><div class="d-tab"><div class="d-bez"><div class="d-scr"><div class="s-top"><img class="devlogo" alt="Vision 4K" decoding="async"><b>Vision 4K</b><span class="on">Home</span><span class="">Live TV</span></div><div class="s-hero"><img class="devlogo" alt="Vision 4K" decoding="async"><div><b>Vision 4K</b><small>Live TV · Movies · Series</small></div></div><div class="s-grid c3"><u>Live TV</u><u>Movies</u><u>Series</u><u>Sport</u><u>Kids</u><u>Music</u></div></div></div></div><span class="d-lab">Tablet</span></div><div class="d-slot"><div class="d-box"><div class="d-top"><img class="devlogo" alt="Vision 4K" decoding="async"><span>ANDROID BOX</span><em></em></div><div class="d-front"><i></i><i></i><i></i><b>4K</b></div></div><span class="d-lab">Android Box</span></div><div class="d-slot"><div class="d-tv"><div class="d-bez"><div class="d-scr"><div class="s-top"><img class="devlogo" alt="Vision 4K" decoding="async"><b>Vision 4K</b><span class="on">Home</span><span class="">Live TV</span><span class="">Movies</span><span class="">Series</span><span class="">Settings</span></div><div class="s-hero"><img class="devlogo" alt="Vision 4K" decoding="async"><div><b>Vision 4K</b><small>Live TV · Movies · Series</small></div></div><div class="s-grid c6"><u>Live TV</u><u>Movies</u><u>Series</u><u>Sport</u><u>Kids</u><u>Music</u></div></div></div><i class="d-stand"></i></div><span class="d-lab">TV</span></div>
+    <div class="shelf"></div>
   </div>
   <script>(function(){var m=document.querySelector("nav .brand img");if(!m)return;document.querySelectorAll(".devlogo").forEach(function(i){i.src=m.src})})();</script>
 </div></div>
